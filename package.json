@@ -1,6 +1,6 @@
 {
   "name": "sudoku",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Sudoku is a logic-based, combinatorial number-placement puzzle.",
   "author": "Mark <mark@remarkablemark.org>",
   "scripts": {
