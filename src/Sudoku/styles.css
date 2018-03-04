@@ -1,0 +1,32 @@
+table {
+  border: 1px solid #666;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 0;
+}
+
+table input {
+  font-size: 14px;
+  height: 30px;
+  text-align: center;
+  width: 30px;
+}
+
+table input:not([readonly]) {
+  font-weight: bold;
+}
+
+tr:nth-child(3n):not(:last-child) > td {
+  border-bottom: 1px solid #666;
+}
+
+td:nth-child(3n):not(:last-child) {
+  border-right: 1px solid #666;
+}
+
+/* difficulty */
+label input {
+  width: 50px;
+}
