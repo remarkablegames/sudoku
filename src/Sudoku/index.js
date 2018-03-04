@@ -1,5 +1,9 @@
 import { h, Component } from 'preact';
+import { trackEvent } from '../helpers/ga';
 import './styles.css';
+
+// GA event value must be an integer
+const GA_DIFFICULTY_MULTIPLIER = 1e3;
 
 // Sudoku uses numbers 1-9
 const SIZE = 9;
@@ -210,10 +214,22 @@ export default class Sudoku extends Component {
    * Checks if puzzle is solved.
    */
   checkSolution = () => {
-    const { attempt, solutionJSON } = this.state;
+    const { attempt, difficulty, solutionJSON } = this.state;
     if (JSON.stringify(attempt) === solutionJSON) {
+      trackEvent(
+        'puzzle',
+        'check',
+        'solved',
+        Math.round(difficulty * GA_DIFFICULTY_MULTIPLIER)
+      );
       alert('Solved!');
     } else {
+      trackEvent(
+        'puzzle',
+        'check',
+        'unsolved',
+        Math.round(difficulty * GA_DIFFICULTY_MULTIPLIER)
+      );
       alert('Not solved.');
     }
   };
@@ -222,8 +238,9 @@ export default class Sudoku extends Component {
    * Clears puzzle attempt.
    */
   clearPuzzle = () => {
-    this.setState(state => ({
-      attempt: state.puzzle.map(row => row.slice()),
+    trackEvent('puzzle', 'clear');
+    this.setState(({ puzzle }) => ({
+      attempt: puzzle.map(row => row.slice()),
     }));
   };
 
@@ -232,6 +249,12 @@ export default class Sudoku extends Component {
    */
   newPuzzle = () => {
     this.setState(({ difficulty }) => {
+      trackEvent(
+        'puzzle',
+        'new',
+        undefined,
+        Math.round(difficulty * GA_DIFFICULTY_MULTIPLIER)
+      );
       const { puzzle, solution } = createGame(difficulty);
       return {
         attempt: puzzle.map(row => row.slice()),

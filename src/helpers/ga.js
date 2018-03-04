@@ -30,5 +30,5 @@ requirejs([url]);
  * @param {Number} [eventValue]
  */
 export const trackEvent = (...args) => {
-  ga.apply(null, ['send', 'event', ...args]);
+  window.ga.apply(null, ['send', 'event', ...args]);
 };
