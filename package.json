@@ -15,6 +15,14 @@
     "release": "standard-version --no-verify",
     "start": "preact-scripts start"
   },
+  "homepage": "https://remarkablegames.org/sudoku/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/remarkablegames/sudoku"
+  },
+  "bugs": {
+    "url": "https://github.com/remarkablegames/sudoku/issues"
+  },
   "keywords": [
     "sudoku",
     "puzzle",
