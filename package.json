@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Sudoku is a logic-based, combinatorial number-placement puzzle.",
   "author": "Mark <mark@remarkablemark.org>",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
+  },
   "scripts": {
     "build": "preact-scripts build",
     "clean": "rm -rf build",
@@ -38,6 +42,7 @@
     "gitploy": "^0.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
+    "marked": "^0.3.17",
     "preact": "^8.2.7",
     "preact-scripts": "0.3.0-alpha",
     "prettier": "^1.11.1",
