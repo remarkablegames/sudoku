@@ -1,25 +1,11 @@
 import { h, Component } from 'preact';
+import {
+  GA_DIFFICULTY_MULTIPLIER,
+  SUDOKU_DIGITS,
+  SUDOKU_LARGEST_DIGIT,
+} from '../helpers/constants';
 import { trackEvent } from '../helpers/ga';
 import './styles.css';
-
-// GA event value must be an integer
-const GA_DIFFICULTY_MULTIPLIER = 1e3;
-
-// Sudoku uses numbers 1-9
-const SIZE = 9;
-
-/**
- * Generates an array with values.
- *
- * @param  {Number}   len
- * @param  {Function} [callback]
- * @return {Array}
- */
-const generateArray = (len, callback = () => {}) =>
-  Array.apply(null, { length: len }).map(callback);
-
-// [1, 2, 3, 4, 5, 6, 7, 8, 9]
-const NUMBERS = generateArray(SIZE, (_, index) => index + 1);
 
 /**
  * Shuffles an array.
@@ -44,7 +30,7 @@ const shuffleArray = (array = [], shouldMutate = false) => {
  *
  * @return {Array}
  */
-const generateRow = () => shuffleArray(NUMBERS);
+const generateRow = () => shuffleArray(SUDOKU_DIGITS);
 
 /**
  * Given output, checks if row is usable.
@@ -129,7 +115,7 @@ const generateSolution = () => {
 
   // get 9th row
   const lastRow = [];
-  for (let number = SIZE; number > 0; number--) {
+  for (let number = SUDOKU_LARGEST_DIGIT; number > 0; number--) {
     for (let i = columnValues.length - 1; i > -1; i--) {
       if (columnValues[i].indexOf(number) === -1) {
         lastRow[i] = number;
