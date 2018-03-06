@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Sudoku is a logic-based, combinatorial number-placement puzzle.",
   "author": "Mark <mark@remarkablemark.org>",
+  "contributors": [
+    "Scott Weaver <scottmweaver@gmail.com>"
+  ],
   "scripts": {
     "build": "preact-scripts build",
     "clean": "rm -rf build",
