@@ -58,8 +58,8 @@
     ]
   },
   "engines": {
-    "node": "8.9.4",
-    "npm": "5.6.0"
+    "node": ">=8",
+    "npm": ">=5.3"
   },
   "private": true,
   "license": "MIT"
