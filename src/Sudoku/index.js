@@ -180,19 +180,33 @@ export default class Sudoku extends Component {
    * Navigates puzzle and records user's attempt.
    */
   handleCellKeyDown = ({ key, target }) => {
+    // Ignore shift key press.
+    if ('Shift' === key) {
+      return;
+    }
+
+    // Get x, y dataset from target element.
     let { x, y } = target.dataset;
+
+    // Set up keyModified so event chain keeps same order.
+    let keyModified = (event.shiftKey ? 'Shift' : '') + key;
+
+    // Set up x and y as Number objects.
     x = Number(x);
     y = Number(y);
-    switch (key) {
+
+    switch (keyModified) {
       case 'ArrowUp':
         y -= 1;
         break;
       case 'ArrowDown':
         y += 1;
         break;
+      case 'ShiftTab':
       case 'ArrowLeft':
         x -= 1;
         break;
+      case 'Tab':
       case 'ArrowRight':
         x += 1;
         break;
