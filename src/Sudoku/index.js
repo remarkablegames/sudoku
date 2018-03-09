@@ -157,55 +157,59 @@ export default class Sudoku extends Component {
 
   /**
    * Focuses puzzle cell when clicked.
+   *
+   * @param {SyntheticEvent}
    */
   handleCellClick({ target }) {
     target.select();
   }
 
   /**
-   * Navigates puzzle and records user's attempt.
+   * Records user input.
+   *
+   * @param {SyntheticEvent}
+   */
+  handleCellChange = ({ key, target }) => {
+    const { x, y } = target.dataset;
+    if (!target.readOnly && key) {
+      this.setState(state => {
+        const attempt = state.attempt.map(row => row.slice());
+        attempt[y][x] = parseInt(key, 10) || (key.length > 1 ? null : key);
+        return { attempt };
+      });
+    }
+  };
+
+  /**
+   * Navigates puzzle.
+   *
+   * @param {SyntheticEvent}
    */
   handleCellKeyDown = ({ key, target }) => {
-    // Ignore shift key press.
-    if ('Shift' === key) {
-      return;
-    }
-
     // Get x, y dataset from target element.
     let { x, y } = target.dataset;
 
-    // Set up keyModified so event chain keeps same order.
-    let keyModified = (event.shiftKey ? 'Shift' : '') + key;
+    // Convert x and y to integers.
+    x = parseInt(x, 10);
+    y = parseInt(y, 10);
 
-    // Set up x and y as Number objects.
-    x = Number(x);
-    y = Number(y);
-
-    switch (keyModified) {
+    switch (key) {
       case 'ArrowUp':
         y -= 1;
         break;
       case 'ArrowDown':
         y += 1;
         break;
-      case 'ShiftTab':
       case 'ArrowLeft':
         x -= 1;
         break;
-      case 'Tab':
       case 'ArrowRight':
         x += 1;
         break;
       default:
-        if (!target.readOnly) {
-          this.setState(state => {
-            const attempt = state.attempt.map(row => row.slice());
-            attempt[y][x] = parseInt(key, 10) || (key.length > 1 ? null : key);
-            return { attempt };
-          });
-        }
         return;
     }
+
     const input = this.tbody.querySelector(`[data-x="${x}"][data-y="${y}"]`);
     if (input) setTimeout(() => input.select());
   };
@@ -285,16 +289,17 @@ export default class Sudoku extends Component {
                 {rows.map((digit, x) => (
                   <td>
                     <input
-                      type="text"
-                      pattern="[0-9]"
-                      maxlength="1"
-                      formnovalidate
                       data-x={x}
                       data-y={y}
-                      value={digit}
-                      readonly={Boolean(puzzle[y][x])}
-                      onKeyDown={this.handleCellKeyDown}
+                      formnovalidate
+                      maxlength="1"
                       onClick={this.handleCellClick}
+                      onChange={this.handleCellChange}
+                      onKeyDown={this.handleCellKeyDown}
+                      pattern="[0-9]"
+                      readonly={Boolean(puzzle[y][x])}
+                      type="text"
+                      value={digit}
                     />
                   </td>
                 ))}
