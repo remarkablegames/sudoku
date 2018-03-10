@@ -169,12 +169,12 @@ export default class Sudoku extends Component {
    *
    * @param {SyntheticEvent}
    */
-  handleCellChange = ({ key, target }) => {
-    const { x, y } = target.dataset;
-    if (!target.readOnly && key) {
+  handleCellChange = ({ target }) => {
+    const { dataset: { x, y }, value } = target;
+    if (!target.readOnly && value) {
       this.setState(state => {
         const attempt = state.attempt.map(row => row.slice());
-        attempt[y][x] = parseInt(key, 10) || (key.length > 1 ? null : key);
+        attempt[y][x] = parseInt(value, 10) || null;
         return { attempt };
       });
     }
