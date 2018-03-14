@@ -1,8 +1,11 @@
 # [sudoku](https://remarkablegames.org/sudoku/)
 
-Sudoku is a logic-based, combinatorial number-placement puzzle. The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid contains all of the digits from 1 to 9. [[Source](https://wikipedia.org/wiki/Sudoku)]
+Description of Sudoku from [Wikipedia](https://wikipedia.org/wiki/Sudoku):
 
-[Play](https://remarkablegames.org/sudoku/)
+> Sudoku is a logic-based, combinatorial number-placement puzzle.
+> The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid contains all of the digits from 1 to 9.
+
+[Play game.](https://remarkablegames.org/sudoku/)
 
 ## Prerequisites
 
@@ -31,11 +34,15 @@ Run development server:
 $ npm start
 ```
 
-You should be able to view the app at http://localhost:3000.
+You should be able to view the game at http://localhost:3000.
 
 ## Release
 
-Release will bump package version, generate changelog, and create git tag:
+Release will do the following:
+
+* bump package version
+* generate changelog
+* commit and tag the changes
 
 ```sh
 $ npm run release
