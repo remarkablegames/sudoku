@@ -16,14 +16,14 @@ Description of Sudoku from [Wikipedia](https://wikipedia.org/wiki/Sudoku):
 Clone repository:
 
 ```sh
-$ git clone https://github.com/remarkablegames/sudoku.git
+git clone https://github.com/remarkablegames/sudoku.git
 ```
 
 Install dependencies:
 
 ```sh
-$ cd sudoku
-$ npm install
+cd sudoku
+npm install
 ```
 
 ## Run
@@ -31,7 +31,7 @@ $ npm install
 Run development server:
 
 ```sh
-$ npm start
+npm start
 ```
 
 You should be able to view the game at http://localhost:3000.
@@ -45,8 +45,8 @@ Release will do the following:
 * commit and tag the changes
 
 ```sh
-$ npm run release
-$ git push --follow-tags
+npm run release
+git push --follow-tags
 ```
 
 ## Deploy
@@ -54,7 +54,7 @@ $ git push --follow-tags
 Deploy to [GitHub Pages](https://pages.github.com):
 
 ```sh
-$ npm run deploy
+npm run deploy
 ```
 
 ## License
